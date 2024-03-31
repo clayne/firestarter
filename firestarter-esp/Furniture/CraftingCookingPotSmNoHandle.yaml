@@ -15,13 +15,15 @@ Keywords:
 - 0A5CB3:Skyrim.esm
 - 0FD0E1:Skyrim.esm
 - 1010B2:Skyrim.esm
+- 00314B:Update.esm
 PNAM: 0x00000000
 Flags:
+- IgnoredBySandbox
 - 0x40000000
 InteractionKeyword: 013794:Skyrim.esm
 WorkbenchData:
   BenchType: CreateObject
-  UsesSkill: Alchemy
+  UsesSkill: 255
 Markers:
 - Enabled: True
   EntryPoints:

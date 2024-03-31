@@ -4,31 +4,32 @@ VirtualMachineAdapter:
   Scripts:
   - Name: Firestarter_Activator
     Properties:
-    - MutagenObjectType: ScriptObjectProperty
-      Name: pTimerState
-      Object: 000816:firestarter.esp
-    - MutagenObjectType: ScriptObjectProperty
-      Name: pActivationState
-      Object: 000817:firestarter.esp
     - MutagenObjectType: ScriptBoolProperty
-      Name: pActivationAdvancesState
+      Name: pActivationCostsFirewood
       Data: True
     - MutagenObjectType: ScriptObjectProperty
       Name: Firewood01
       Object: 06F993:Skyrim.esm
-    - MutagenObjectType: ScriptFloatProperty
-      Name: pTimerLen
-      Data: 1
-    - MutagenObjectType: ScriptObjectProperty
-      Name: pInitializationSound
-    - MutagenObjectType: ScriptBoolProperty
-      Name: pActivationCostsFirewood
-      Data: True
-    - MutagenObjectType: ScriptBoolProperty
-      Name: pHasTimer
     - MutagenObjectType: ScriptObjectProperty
       Name: pFailureSound
       Object: 06D1C6:Skyrim.esm
+    - MutagenObjectType: ScriptObjectProperty
+      Name: pTimerState
+      Object: 000816:firestarter.esp
+    - MutagenObjectType: ScriptObjectProperty
+      Name: FS_Trigger_Animation
+      Object: 00080E:firestarter.esp
+    - MutagenObjectType: ScriptFloatProperty
+      Name: pTimerLen
+      Data: 1
+    - MutagenObjectType: ScriptBoolProperty
+      Name: pActivationAdvancesState
+      Data: True
+    - MutagenObjectType: ScriptObjectProperty
+      Name: pActivationState
+      Object: 000817:firestarter.esp
+    - MutagenObjectType: ScriptBoolProperty
+      Name: pHasTimer
 ObjectBounds:
   First: -66, -62, -7
   Second: 60, 60, 10
@@ -43,6 +44,9 @@ Model:
     NewTexture: 000AE1:Skyrim.esm
     Index: 9
 MarkerColor: '#00CC4C33'
+ActivateTextOverride:
+  TargetLanguage: English
+  Value: Add Firewood
 Flags:
 - IgnoredBySandbox
 InteractionKeyword: 099306:Skyrim.esm

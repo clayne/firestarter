@@ -1,0 +1,26 @@
+FormKey: 00080D:firestarter.esp
+EditorID: FirestarterQuest
+VirtualMachineAdapter:
+  FileName: ''
+  Aliases:
+  - Property:
+      Name: ''
+      Object: 00080D:firestarter.esp
+      Alias: 0
+    Scripts:
+    - Name: Firestarter_QuestEvents
+      Properties:
+      - MutagenObjectType: ScriptObjectProperty
+        Name: PlayerRef
+        Object: 000014:Skyrim.esm
+      - MutagenObjectType: ScriptObjectProperty
+        Name: FS_DAK_Perk
+        Object: 00080C:firestarter.esp
+Flags:
+- StartGameEnabled
+- 0x10
+Aliases:
+- Name: Player
+  Flags: []
+  ForcedReference: 000014:Skyrim.esm
+  VoiceTypes: Null

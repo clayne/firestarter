@@ -1,0 +1,81 @@
+FormKey: 00080C:firestarter.esp
+EditorID: FS_DynamicActivationKey_Perk
+VirtualMachineAdapter:
+  Scripts:
+  - Name: Firestarter_DAK_Perk
+    Properties:
+    - MutagenObjectType: ScriptObjectProperty
+      Name: pCraftingFurniture
+      Object: 00080A:firestarter.esp
+  ScriptFragments:
+    FileName: Firestarter_DAK_Perk
+    Fragments:
+    - Unknown2: 1
+      ScriptName: Firestarter_DAK_Perk
+      FragmentName: Fragment_0
+Name:
+  TargetLanguage: English
+  Value: FS_DynamicActivationKey_Perk
+Description:
+  TargetLanguage: English
+  Value: Adds an extra option to campfires.
+NumRanks: 1
+Playable: True
+Hidden: True
+Effects:
+- MutagenObjectType: PerkEntryPointAddActivateChoice
+  Conditions:
+  - Conditions:
+    - MutagenObjectType: ConditionFloat
+      Unknown1: 0x000000
+      Data:
+        MutagenObjectType: GetGlobalValueConditionData
+        Global: 000801:Dynamic Activation Key.esp
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Unknown1: 0x000000
+      Data:
+        MutagenObjectType: GetIsIDConditionData
+        Object: 000007:Skyrim.esm
+      ComparisonValue: 1
+  - RunOnTabIndex: 1
+    Conditions:
+    - MutagenObjectType: ConditionFloat
+      Unknown1: 0x000000
+      Data:
+        MutagenObjectType: GetIsObjectTypeConditionData
+      ComparisonValue: 1
+  EntryPoint: Activate
+  PerkConditionTabCount: 2
+  Flags:
+    Flags:
+    - RunImmediately
+    - ReplaceDefault
+- MutagenObjectType: PerkEntryPointSetText
+  Conditions:
+  - Conditions:
+    - MutagenObjectType: ConditionFloat
+      Unknown1: 0x000000
+      Data:
+        MutagenObjectType: GetGlobalValueConditionData
+        Global: 000801:Dynamic Activation Key.esp
+      ComparisonValue: 1
+    - MutagenObjectType: ConditionFloat
+      Unknown1: 0x000000
+      Data:
+        MutagenObjectType: GetIsIDConditionData
+        Object: 000007:Skyrim.esm
+      ComparisonValue: 1
+  - RunOnTabIndex: 1
+    Conditions:
+    - MutagenObjectType: ConditionFloat
+      Unknown1: 0x000000
+      Data:
+        MutagenObjectType: HasKeywordConditionData
+        Keyword: 000802:firestarter.esp
+      ComparisonValue: 1
+  EntryPoint: SetActivateLabel
+  PerkConditionTabCount: 2
+  Text:
+    TargetLanguage: English
+    Value: Cook

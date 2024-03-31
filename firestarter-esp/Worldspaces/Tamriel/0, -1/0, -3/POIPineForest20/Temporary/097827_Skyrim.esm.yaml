@@ -1,0 +1,9 @@
+MutagenObjectType: PlacedObject
+FormKey: 097827:Skyrim.esm
+MajorRecordFlagsRaw: 2048
+Version2: 1
+SkyrimMajorRecordFlags:
+- InitiallyDisabled
+Base: 0B09ED:Skyrim.esm
+Placement:
+  Position: 3050.149, -66140.81, 3363.6846

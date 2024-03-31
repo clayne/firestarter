@@ -9,12 +9,19 @@ Model:
 Keywords:
 - 06E9C7:Skyrim.esm
 - 00314B:Update.esm
-PNAM: 0xCC4C3300
+- 0A56D8:Skyrim.esm
+- 0A5CB3:Skyrim.esm
+- 1010B2:Skyrim.esm
 Flags:
 - IgnoredBySandbox
 InteractionKeyword: 013794:Skyrim.esm
 WorkbenchData:
   BenchType: CreateObject
-  UsesSkill: Alchemy
+  UsesSkill: 255
 Markers:
 - Enabled: True
+  EntryPoints:
+    Type:
+    - Sit
+    Points:
+    - Behind
