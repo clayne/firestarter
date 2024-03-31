@@ -12,7 +12,9 @@ _help:
 
 # Serialize the plugin to yaml.
 serialize:
-	{{SPRIGGIT}} serialize -d --InputPath data/firestarter.esp --OutputPath ./firestarter-esp/ --GameRelease SkyrimSE --PackageName Spriggit.Yaml --PackageVersion 0.17.0 sploot
+	#!/usr/bin/env bash
+	version=$(spriggit --version 2>&1 | cut -w -f2)
+	spriggit serialize -d --InputPath data/firestarter.esp --OutputPath ./firestarter-esp/ --GameRelease SkyrimSE --PackageName Spriggit.Yaml --PackageVersion $version sploot
 
 # Re-hydrate the plugin from yaml.
 hydrate:
