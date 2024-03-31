@@ -1,10 +1,12 @@
 ScriptName Firestarter_Activator extends ObjectReference
 {An attempt at a no-state activator.}
 
+import PO3_SKSEFunctions
+
 ; Game data we need to use for all of them.
 Sound property pFailureSound auto
 MiscObject property Firewood01 auto
-GlobalVariable property FS_Trigger_Animation auto
+Formlist property FS_Smokers_List auto
 
 ; Activator-specific data, set in the CK.
 bool property pActivationAdvancesState auto
@@ -21,19 +23,32 @@ Activator property pTimerState auto
 bool bIsManaged = false
 bool bNeedsDelete = true
 
-function initializeFireTimers()
+function initializeFireState()
     bIsManaged = true
     if pHasTimer
         RegisterForSingleUpdateGameTime(0.124)
     endif
 endFunction
 
+; We squash very very nearby smoke chimney objects, otherwise we'll have
+; baffling smoke rising from dead fires. :(
+function stifleSmokers()
+    ObjectReference[] smokers = FindAllReferencesOfType(self, FS_Smokers_List, 300.0)
+    int i = 0
+    while i < smokers.Length
+        ObjectReference ref = smokers[i]
+        ref.Disable(true)
+        i += 1
+    endWhile
+endFunction
+
 ; Called when the player activates the item, and also when this is
 ; first instantiated in the world.
 event OnActivate(ObjectReference akActionRef)
     if !bIsManaged
+        self.stifleSmokers()
         bNeedsDelete = false
-        self.initializeFireTimers()
+        self.initializeFireState()
     endif
 
     Actor player = Game.GetPlayer()
@@ -70,7 +85,7 @@ function replaceSelf(Activator next)
 	nextState.SetPosition(self.GetPositionX(), self.GetPositionY(), self.GetPositionZ())
 	self.Disable(true)
     Utility.Wait(0.1)
-    nextState.initializeFireTimers()
+    nextState.initializeFireState()
 
     if bNeedsDelete
         Utility.Wait(0.1)
