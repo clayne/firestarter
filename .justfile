@@ -24,11 +24,20 @@ hydrate:
 check-translations:
 	mcm-meta-helper --moddir data check all
 
+# Copy English translation to other translation files.
+[unix]
+translations:
+    #!/usr/bin/env bash
+    declare -a langs=(czech french german italian japanese polish russian spanish)
+    for lang in "${langs[@]}"; do
+        cp -p data/Interface/Translations/Firestarter_english.txt data/Interface/Translations/Firestarter_$lang.txt
+    done
+
 # Copy the built mod files to the test mod. Can use rsync to copy many files.
 [unix]
 @install:
 	echo "copying to live mod for testing..."
-	rsync -a data/ "{{TESTMOD}}"
+	rsync -va data/ "{{TESTMOD}}"
 
 [unix]
 @backup:
@@ -45,4 +54,8 @@ check-translations:
 
 [windows]
 @backup:
+	echo "Run this where you have bash."
+
+[windows]
+@translations:
 	echo "Run this where you have bash."

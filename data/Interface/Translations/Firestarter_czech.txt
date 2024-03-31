@@ -1,0 +1,4 @@
+$FS_AddFuel	Add wood
+$FS_Clean	Clean the ashes
+$FS_Cook	Cook
+$FS_Light	Light fire

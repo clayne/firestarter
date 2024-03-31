@@ -63,6 +63,7 @@ Event OnUpdateGameTime()
 EndEvent
 
 function replaceSelf(Activator next)
+    self.UnregisterForUpdateGameTime()
     Firestarter_Activator nextState = self.placeAtMe(next) as Firestarter_Activator
 	nextState.SetScale(self.getScale())
 	nextState.SetAngle(self.GetAngleX(), self.GetAngleY(), self.GetAngleZ())

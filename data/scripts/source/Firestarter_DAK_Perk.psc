@@ -8,21 +8,23 @@ Furniture property pCraftingFurniture auto
 Function Fragment_0(ObjectReference akTargetRef, Actor akActor)
     ;BEGIN CODE
 
-    Actor player = Game.GetPlayer()
-    ObjectReference furnitureMarker = player.PlaceAtMe(pCraftingFurniture)
+	; This code is adapted from Hunterborn's source.
+	Actor player = Game.GetPlayer()
+	ObjectReference furnitureMarker = player.PlaceAtMe(pCraftingFurniture)
 	furnitureMarker.Activate(player)
 
+	; Wait for it to be in use.
 	int i = 0
-	While !furnitureMarker.IsFurnitureInUse() && i < 50
+	While !furnitureMarker.IsFurnitureInUse() && i < 100
 		i += 1
 		Utility.Wait(0.1)
 	EndWhile
 
+	; Then wait for it NOT to be in use.
 	While furnitureMarker.IsFurnitureInUse()
 		Utility.Wait(1)
 	EndWhile
 
-	; This code is borrowed from Campfire & Hunterborn.
 	If furnitureMarker
 		furnitureMarker.Disable()
 		Utility.Wait(0.1)
