@@ -8,14 +8,16 @@ It is in the implementation phase.
 
 ## TODO
 
-- [ ] particles, flame effects, glow effects, and smoke: tune to lifecycle
+- [x] particles, flame effects, glow effects, and smoke: tune to lifecycle
+- [ ] another pass on particles/flames
 - [ ] texturing for the unburned log meshes
 - [x] Dynamic Activation Key perk
 - [x] hook up DAK to trigger cooking on burning fires (or the reverse?)
 - [ ] integrate with Campfire mod instead of merely co-existing with it
 - [x] play animations for actions if we have them
 - [x] translation files
-- [ ] extinguish action to get back firewood?
+- [x] extinguish all nearby smoke sources
+- [ ] a douse-fire action to get back firewood?
 - [ ] settings to control level of "immersion" plus MCM
 
 ## What the mod does
@@ -41,6 +43,8 @@ If the player has the optional ["Campfire Animations"](https://www.nexusmods.com
 The keyword `FS_Cooking_Capable` is present on activator states that are hot enough to cook with.
 
 The modified Campfire Animations script looks for te keywords `Camping_CampfireCookingShared` or `CraftingCampfire` on furniture to consider if it wants to trigger an animation.
+
+The formlist `FS_Smokers_List` has a list of form ids of smoke fx sources in the vanilla game that need to be disabled to prevent dead fires from emitting smoke.
 
 TODO: Campfire mod integrations.
 
