@@ -22,14 +22,14 @@ It is in the implementation phase.
 
 ## What the mod does
 
-Firestarter defines 7 activators with different NIF models. Each activator corresponds with a specific point in a campfire lifecycle:
+Firestarter defines 7 activators with different NIF models. Each activator represents a specific point in a campfire lifecycle:
 
 1. clean: a bare circle of stones
 2. fueled: there are logs in the circle, ready to burn
-3. kindled: a flame is starting
+3. kindled: a flame is starting, some warmth
 4. burning: a fire the player can cook on and sleep next to is burning
 5. roaring: the player has added more fuel to a burning fire, and is warm even in the coldest night
-6. dying: the fuel is running out
+6. dying: the fuel is running out, but the fire is still warm
 7. ashes: there might be some residual warmth, but the player cannot cook any more
 
 A base object swapper config swaps out all in-game campfires with either the _burning_ activator or the _fueled_ activator, if the fire is not burning.
@@ -47,6 +47,43 @@ The modified Campfire Animations script looks for te keywords `Camping_CampfireC
 The formlist `FS_Smokers_List` has a list of form ids of smoke fx sources in the vanilla game that need to be disabled to prevent dead fires from emitting smoke.
 
 TODO: Campfire mod integrations.
+
+## Activating campfires
+
+Clean stone circle:
+
+- Insert 4 logs; get tipi config.
+- DAK: Insert 8 logs for log cabin config; roaring fire.
+- Campfire + DAK: Open campfire as container, campfire-style.
+
+Fueled campfire:
+
+- Light fire.
+- Campfire: Use campfire's setting for fire-starting.
+
+Kindled fire:
+
+- Stoke.
+- Campfire: Do something with Campfire's early-stage fire experience.
+
+Burning campfire:
+
+- Cook.
+- DAK: Add wood; go to roaring.
+
+Roaring campfire:
+
+- Cook.
+- DAK: Sleep by fire.
+
+Dying campfire:
+
+- Add wood; go to burning.
+- DAK: Douse fire; get back some number of firewood. (1? 2?)
+
+Ashes and embers:
+
+- Clean out ashes. (Get 1 charcoal back, 2 if it was roaring :D )
 
 ## LICENSE
 
