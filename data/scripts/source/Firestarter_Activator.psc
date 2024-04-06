@@ -2,13 +2,9 @@ ScriptName Firestarter_Activator extends ObjectReference
 {An attempt at a no-state activator.}
 
 import PO3_SKSEFunctions
+import FS_Data
 
-; Game data we need to use for all of them.
-Sound property pFailureSound auto
-MiscObject property Firewood01 auto
-Formlist property FS_Smokers_List auto
-Furniture property pCookingMarker auto
-Furniture property pSleepingMarker auto
+FS_Data property pData auto
 
 ; Activator-specific data, set in the CK.
 bool property pActivationAdvancesState auto
@@ -41,7 +37,7 @@ endFunction
 ; We squash very very nearby smoke chimney objects, otherwise we'll have
 ; baffling smoke rising from dead fires. :(
 function stifleSmokers()
-    ObjectReference[] smokers = FindAllReferencesOfType(self, FS_Smokers_List, 300.0)
+    ObjectReference[] smokers = FindAllReferencesOfType(self, pData.FS_Smokers_List, 300.0)
     int i = 0
     while i < smokers.Length
         ObjectReference ref = smokers[i]
@@ -98,13 +94,13 @@ function advanceToNextState()
     Actor player = Game.GetPlayer()
     if pActivationCostsFirewood
         ; if player has 3 firewood, take them & fuel the fire
-        if player.GetItemCount(Firewood01) >= kFirewoodCost
-            player.RemoveItem(Firewood01, kFirewoodCost)
+        if player.GetItemCount(pData.Firewood01) >= kFirewoodCost
+            player.RemoveItem(pData.Firewood01, kFirewoodCost)
             replaceSelf(pNextState)
         else
             ; TODO translations
             Debug.Notification("You need at least " + kFirewoodCost + " firewood to stoke the fire.")
-            pFailureSound.Play(player)
+            pData.UIActivateFail.Play(player)
         endif
     else
         replaceSelf(pNextState)
@@ -173,7 +169,7 @@ endState
 
 state State_Burning
     event OnActivate(ObjectReference akActionRef)
-        useTempFurniture(pCookingMarker)
+        useTempFurniture(pData.FS_Furn_CookingMarker)
     endEvent
 
     function doDakActivate()
@@ -183,11 +179,11 @@ endState
 
 state State_Roaring
     event OnActivate(ObjectReference akActionRef)
-        useTempFurniture(pCookingMarker)
+        useTempFurniture(pData.FS_Furn_CookingMarker)
     endEvent
 
     function doDakActivate()
-        useTempFurniture(pSleepingMarker)
+        useTempFurniture(pData.BedrollGround)
     endFunction
 endState
 
@@ -199,7 +195,7 @@ state State_Dying
     function doDakActivate()
         ; douse fire, get back 2 charcoal
         Actor player = Game.GetPlayer()
-        ; player.addItem(charcoalproperty, 2)
+        player.addItem(pData.Charcoal, 2)
         ; this speeds up going to the ashes states
         replaceSelf(pTimerState)
     endFunction

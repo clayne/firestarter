@@ -1,6 +1,6 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
 ;NEXT FRAGMENT INDEX 1
-ScriptName Firestarter_DAK_Perk extends Perk
+ScriptName FS_DakActivationPerk extends Perk
 
 import Firestarter_Activator
 
